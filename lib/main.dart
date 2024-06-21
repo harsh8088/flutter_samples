@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'common/capsule.dart';
+import 'custom/custom_rating_bar.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -60,6 +63,43 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ));
                   },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CapsuleWidget(
+                height: 30,
+                width: 70,
+                topColor: Colors.orange,
+                bottomColor: Colors.orange,
+                child: Container(
+                  color: Colors.transparent,
+                  width: 200,
+                  height: 30,
+                ),
+              ),
+            ),
+            ExpansionTile(
+              title: const Text('Custom Widgets'),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomRatingBar(
+                        starCount: 5,
+                        rating: 1.0,
+                        filledColor: Colors.amber,
+                        unfilledColor: Colors.grey,
+                        onRatingChanged: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
