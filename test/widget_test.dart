@@ -6,25 +6,47 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_samples/test_widget/calculator.dart';
+import 'package:flutter_samples/test_widget/greeting_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_samples/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Calculator tests', () {
+    test('Addition should work correctly', () {
+      final calculator = Calculator();
+      expect(calculator.add(2, 3), equals(5));
+      expect(calculator.add(double.nan, 3), isNaN);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('Subtraction should work correctly', () {
+      final calculator = Calculator();
+      expect(calculator.subtract(5, 2), equals(3));
+    });
+    test('Multiplication should work correctly', () {
+      final calculator = Calculator();
+      expect(calculator.multiply(5, 2), equals(10));
+    });
+    test('Dividing should work correctly', () {
+      final calculator = Calculator();
+      expect(calculator.divide(5, 2), equals(2.5));
+    });
+    test('Dividing by zero should throw an ArgumentError', () {
+      final calculator = Calculator();
+      expect(() => calculator.divide(5, 0), throwsA(isA<ArgumentError>()));
+    });
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('GreetingWidget displays correct text',
+      (WidgetTester tester) async {
+    // Create the widget
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: GreetingWidget(name: 'Amit Kumar'),
+      ),
+    );
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Find the text widget and verify it's content
+    final textFinder = find.text('Welcome, Amit Kumar!');
+    expect(textFinder, findsOneWidget);
   });
 }

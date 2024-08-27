@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_samples/screen/sample_widget.dart';
+import 'package:flutter_samples/screen/table_widget.dart';
 
 import 'common/capsule.dart';
 import 'custom/custom_rating_bar.dart';
@@ -66,23 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CapsuleWidget(
-                height: 30,
-                width: 70,
-                topColor: Colors.orange,
-                bottomColor: Colors.orange,
-                child: Container(
-                  color: Colors.transparent,
-                  width: 200,
-                  height: 30,
-                ),
-              ),
-            ),
+
             ExpansionTile(
               title: const Text('Custom Widgets'),
               children: <Widget>[
@@ -100,6 +86,46 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CapsuleWidget(
+                    height: 30,
+                    width: 70,
+                    topColor: Colors.orange,
+                    bottomColor: Colors.orange,
+                    child: Container(
+                      color: Colors.transparent,
+                      width: 200,
+                      height: 30,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            ExpansionTile(
+              title: const Text('Common Issues'),
+              subtitle: const Text('Sub heading'),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('Loading Issue(Json Snapshot)'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const LandingPageWidget();
+                      },
+                    ));
+                  },
+                ),
+                ListTile(
+                  title: const Text('Table Widget'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const TableWidget();
+                      },
+                    ));
+                  },
                 ),
               ],
             ),

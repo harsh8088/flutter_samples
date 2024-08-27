@@ -6,11 +6,11 @@ class AnimatedStarRatingBar extends StatefulWidget {
   final void Function(double) onRatingChanged;
 
   const AnimatedStarRatingBar({
-    Key? key,
+    super.key,
     required this.starCount,
     required this.rating,
     required this.onRatingChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedStarRatingBar> createState() => _AnimatedStarRatingBarState();

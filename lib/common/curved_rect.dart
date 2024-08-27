@@ -40,8 +40,10 @@ class CurvedCutRectangle extends StatelessWidget {
     path.lineTo(cutEndX, curveRadius);
     // Define the curved cut path
     path.quadraticBezierTo(
-      width / 2, height - curveRadius,
-      cutStartX, curveRadius,
+      width / 2,
+      height - curveRadius,
+      cutStartX,
+      curveRadius,
     );
     path.lineTo(cutStartX, height);
     path.arcToPoint(
